@@ -6,7 +6,7 @@ import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.DatabaseModule
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.NetworkModule
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.RvModule
 
-@Component(modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class,RvModule::class])
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
 
