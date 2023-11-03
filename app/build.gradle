@@ -62,7 +62,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     // okHttpClient
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
-
+    // viewModelScope
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
         // agar gredle hatolik bersa kerak bo'ladi
         // android.enableJetifier=true
 

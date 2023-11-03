@@ -4,6 +4,7 @@ import android.app.Application
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.component.AppComponent
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.component.DaggerAppComponent
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.NetworkModule
+import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.RvModule
 
 class App:Application() {
     companion object{
@@ -14,6 +15,7 @@ class App:Application() {
         super.onCreate()
         appComponent=DaggerAppComponent.builder()
             .networkModule(NetworkModule())
+            .rvModule(RvModule())
             .build()
     }
 }

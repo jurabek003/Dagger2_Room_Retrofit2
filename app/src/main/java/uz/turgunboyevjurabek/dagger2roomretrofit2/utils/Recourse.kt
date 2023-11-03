@@ -12,7 +12,7 @@ data class Recourse<out T>(val status: Status,val data:T?,val massage:String?){
             return Recourse(Status.ERROR,null,massage)
         }
 
-        fun <T>loading():Recourse<T>{
+        fun <T>loading(massage: String?):Recourse<T>{
             return Recourse(Status.LOADING,null,null)
         }
     }
