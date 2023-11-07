@@ -1,9 +1,13 @@
 package uz.turgunboyevjurabek.dagger2roomretrofit2
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
 import android.content.Context
+import android.content.DialogInterface.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import uz.turgunboyevjurabek.dagger2roomretrofit2.adapter.RvAdapter
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var networkCheck: NetworkCheck
 
+    var isAllFabsVisible: Boolean? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
@@ -43,6 +49,34 @@ class MainActivity : AppCompatActivity() {
 
 
         rvAddFun()
+
+        binding.btnAdd.shrink()
+
+        binding.floatingActionButton1.visibility=View.GONE
+        binding.floatingActionButton2.visibility=View.GONE
+
+        isAllFabsVisible=false
+
+
+        fabfun()
+    }
+
+    private fun fabfun() {
+        binding.btnAdd.setOnClickListener{
+
+            isAllFabsVisible=if(!isAllFabsVisible!!){
+                binding.floatingActionButton1.visibility=View.VISIBLE
+                binding.floatingActionButton2.visibility=View.VISIBLE
+                binding.btnAdd.extend()
+                true
+            }else{
+                binding.floatingActionButton1.visibility=View.GONE
+                binding.floatingActionButton2.visibility=View.GONE
+                binding.btnAdd.shrink()
+                false
+            }
+        }
+
     }
 
     private fun rvAddFun() {

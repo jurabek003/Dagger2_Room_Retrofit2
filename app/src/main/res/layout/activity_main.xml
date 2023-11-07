@@ -12,4 +12,37 @@
       android:layout_height="match_parent"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+  <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+      android:id="@+id/btn_add"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Action"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_margin="20dp"
+      app:icon="@drawable/ic_add"
+      app:rippleColor="#FFD600"
+      android:backgroundTint="@color/white"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/floatingActionButton1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:fabSize="normal"
+      android:src="@drawable/ic_photo"
+      android:layout_marginBottom="10dp"
+      app:layout_constraintBottom_toTopOf="@+id/btn_add"
+      app:layout_constraintEnd_toEndOf="@+id/btn_add"
+       />
+
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/floatingActionButton2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      app:fabSize="normal"
+      android:src="@drawable/ic_post"
+      app:layout_constraintBottom_toTopOf="@+id/floatingActionButton1"
+      app:layout_constraintEnd_toEndOf="@+id/floatingActionButton1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
