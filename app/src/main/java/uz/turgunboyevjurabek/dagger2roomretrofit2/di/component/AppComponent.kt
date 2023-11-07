@@ -8,8 +8,9 @@ import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.RvModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class,RvModule::class])
+@Component(modules = [NetworkModule::class,RvModule::class,DatabaseModule::class])
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
     //,RvModule::class
+
 }
