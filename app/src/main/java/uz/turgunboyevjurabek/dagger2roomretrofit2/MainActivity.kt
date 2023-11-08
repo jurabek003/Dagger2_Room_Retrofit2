@@ -10,19 +10,24 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import uz.turgunboyevjurabek.dagger2roomretrofit2.adapter.RvAdapter
 import uz.turgunboyevjurabek.dagger2roomretrofit2.checkNetwork.NetworkCheck
 import uz.turgunboyevjurabek.dagger2roomretrofit2.dataBase.AppDataBase
 import uz.turgunboyevjurabek.dagger2roomretrofit2.dataBase.dao.UserDao
 import uz.turgunboyevjurabek.dagger2roomretrofit2.databinding.ActivityMainBinding
+import uz.turgunboyevjurabek.dagger2roomretrofit2.databinding.DialogItemBinding
 import uz.turgunboyevjurabek.dagger2roomretrofit2.di.module.RvModule
+import uz.turgunboyevjurabek.dagger2roomretrofit2.madels.Client_Post
 import uz.turgunboyevjurabek.dagger2roomretrofit2.madels.Clients_Get
+import uz.turgunboyevjurabek.dagger2roomretrofit2.madels.Requre_Post
 import uz.turgunboyevjurabek.dagger2roomretrofit2.utils.Recourse
 import uz.turgunboyevjurabek.dagger2roomretrofit2.utils.Status
 import uz.turgunboyevjurabek.dagger2roomretrofit2.utils.Status.*
 import uz.turgunboyevjurabek.dagger2roomretrofit2.vm.ViewModule
 import javax.inject.Inject
 
+@Suppress("UNUSED_EXPRESSION")
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     @Inject
@@ -77,6 +82,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val dialog=BottomSheetDialog(this)
+        val dialogItemBinding=DialogItemBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogItemBinding.root)
+
+        binding.floatingActionButton2.setOnClickListener {
+            dialog.show()
+        }
+
+        dialogItemBinding.btnDialogSave.setOnClickListener {
+            val requrePost=Requre_Post("fam","ism","quqon","901234567",123)
+            addPost(requrePost)
+            dialog.cancel()
+        }
+
     }
 
     private fun rvAddFun() {
@@ -122,6 +141,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+        }
+    }
+
+    private fun addPost(requrePost: Requre_Post){
+
+        viewModule.postClient(requrePost).observe(this){
+            when(it.status){
+                LOADING -> Toast.makeText(this, "Yuklanmoqda...", Toast.LENGTH_SHORT).show()
+                ERROR -> Toast.makeText(this, "Hatolik yuzberdi :( ${it.massage}", Toast.LENGTH_SHORT).show()
+                SUCCESS -> Toast.makeText(this, "Yuklandi :)", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
